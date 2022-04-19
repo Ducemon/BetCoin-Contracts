@@ -16,7 +16,8 @@ async function main() {
   // We get the contract to deploy
   const Betcoin = await hre.ethers.getContractFactory("BetCoin");
   const betcoin = await Betcoin.deploy(100000);
-  const Bet = await hre.ethers.getContractFactory("Bet");
+
+  const BetFactory = await hre.ethers.getContractFactory("BetFactory");
 
 
 
@@ -26,10 +27,10 @@ async function main() {
 
   console.log("Betcoin deployed to:", betcoin.address);
 
-  const bet = await Bet.deploy(1,2, betcoin.address);
-  await bet.deployed();
+  const betfactory = await BetFactory.deploy();
+  await betfactory.deployed();
 
-  console.log("Bet deployed to:", bet.address);
+  console.log("Bet factory deployed to:", betfactory.address);
 
 
 }
