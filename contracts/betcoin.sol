@@ -17,11 +17,11 @@ contract BetCoin is ERC20{
         _mint(msg.sender, initialSupply*(10 ** decimals()));
     }
 
-    function faucet() external{
-        require(nextRequestAt[msg.sender] < block.timestamp, "FaucetError: Try again later");
+    function faucet(address user) external{
+        require(nextRequestAt[user] < block.timestamp, "FaucetError: Try again later");
         
-        nextRequestAt[msg.sender] = block.timestamp + (5 minutes); //pentru test 5 secunde, planificat 7 zile
-        _mint(msg.sender, faucetDripAmount*(10 ** decimals()));
+        nextRequestAt[user] = block.timestamp + (5 seconds); //pentru test 5 secunde, planificat 7 zile
+        _mint(user, faucetDripAmount*(10 ** decimals()));
     }
 
 
